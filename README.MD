@@ -33,8 +33,22 @@ sudo dpkg-reconfigure tzdata
 
 ## disable ssh login for root user
 
-## install apache
+## install apache and mod_wsgi
 sudo apt install apache2
+sudo apt install libapache2-mod-wsgi python-dev
+sudo a2enmod wsgi
+
+## create virtual enviroment on FlaskApp folder 
+sudo pip install virtualenv
+sudo virtualenv env
+source venv/bin/activate
+sudo chmod -R 777 venv
+
+## install flask and the dependencies
+sudo pip install flask request httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils
+
+## download the 
+
 
 
 
