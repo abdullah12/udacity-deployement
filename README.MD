@@ -13,7 +13,7 @@ connect to the machine using ssh
 sudo adduser grader  
 sudo usermod -aG sudo grader  
 
-## generate ssh keys and paste the public key to the server
+## Generate ssh keys and paste the public key to the server
 ssh-kegen
 copy the content of public key
 log into the server 
@@ -26,24 +26,24 @@ sudo apt update
 sudo apt upgrade  
 
 
-## change ssh default port
+## Change ssh default port
 configure ssh to port 2200 on the file /etc/ssh/sshd_config  
 sudo service sshd restart  
 
-## configure the firewall
+## Configure the firewall
 
 sudo ufw allow 2200/tcp  
 sudo ufw allow 80  
 suod ufw allow 123/udp  
 udo ufw enable  
 
-## setting the timezone to UTC
+## Setting the timezone to UTC
 sudo dpkg-reconfigure tzdata  
 
 
-## disable ssh login for root user
+## Disable ssh login for root user
 
-## install apache and mod_wsgi
+## Install apache and mod_wsgi
 sudo apt install apache2  
 sudo apt install libapache2-mod-wsgi python-dev  
 sudo a2enmod wsgi  
@@ -62,16 +62,16 @@ GRANT ALL ON SCHEMA public TO catalog;
 \q  
 exit  
 
-## create virtual enviroment on FlaskApp folder 
+## Create virtual enviroment on FlaskApp folder 
 sudo pip install virtualenv  
 sudo virtualenv env  
 source venv/bin/activate  
 sudo chmod -R 777 venv  
 
-## install flask and the dependencies
+## Install flask and the dependencies
 sudo pip install flask request httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils  
 
-## clone the app 
+## Clone the app 
 create folder FlaskApp in /var/www/
 inside FlaskApp create file catalog.wsgi with this content
 ```
@@ -90,7 +90,7 @@ git clone https://github.com/abdullah12/catalog-project.git .
 change app.py to __init__.py  
 change the path of client_secrets.json inside __init__.py  
 
-## configure apache virtual host 
+## Configure apache virtual host 
 ```
 <VirtualHost *:80>
     ServerName 3.89.198.13
@@ -113,10 +113,6 @@ change the path of client_secrets.json inside __init__.py
     CustomLog ${APACHE_LOG_DIR}/access.log combined
 </VirtualHost>
 ```
-
-
-
-
-
-
-
+## Refrences
+https://www.digitalocean.com/community/tutorials/how-to-deploy-a-flask-application-on-an-ubuntu-vps  
+https://www.digitalocean.com/community/tutorials/how-to-install-and-use-postgresql-on-ubuntu-16-04  
