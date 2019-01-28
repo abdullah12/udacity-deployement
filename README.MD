@@ -4,7 +4,7 @@ This repo shows how to deploy a udacity catalog project
 
 ## Create virtual Machine
 and the note the ip and domain name  
-ip : 35.170.33.100  
+ip : 3.89.198.13  
 domain name :progtut.site  
 
 connect to the machine using ssh  
