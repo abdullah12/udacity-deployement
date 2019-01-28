@@ -81,6 +81,13 @@ sys.path.insert(0, "/var/www/FlaskApp/")
 from FlaskApp import app as application
 application.secret_key = 'supersecretkey'
 ```
+insdie the FlaskApp create another FlaskApp and change to the created folder 
+
+git clone https://github.com/abdullah12/catalog-project.git .
+
+change app.py to __init__.py
+
+
 
 
 
