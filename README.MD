@@ -46,6 +46,20 @@ sudo apt install apache2
 sudo apt install libapache2-mod-wsgi python-dev  
 sudo a2enmod wsgi  
 
+## Install postgresql and create the database
+sudo apt-get install libpq-dev python-dev  
+sudo apt-get install postgresql postgresql-contrib  
+sudo su - postgres  
+psql  
+CREATE USER catalog WITH PASSWORD 'password';  
+ALTER USER catalog CREATEDB;  
+CREATE DATABASE catalog WITH OWNER catalog;  
+\c catalog  
+REVOKE ALL ON SCHEMA public FROM public;  
+GRANT ALL ON SCHEMA public TO catalog;  
+\q  
+exit  
+
 ## create virtual enviroment on FlaskApp folder 
 sudo pip install virtualenv  
 sudo virtualenv env  
@@ -55,7 +69,18 @@ sudo chmod -R 777 venv
 ## install flask and the dependencies
 sudo pip install flask request httplib2 oauth2client sqlalchemy psycopg2 sqlalchemy_utils  
 
-## download the 
+## clone the app 
+create folder FlaskApp in /var/www/
+inside FlaskApp create file catalog.wsgi with this content
+```
+import sys
+import logging
+logging.basicConfig(stream=sys.stderr)
+sys.path.insert(0, "/var/www/FlaskApp/")
+
+from FlaskApp import app as application
+application.secret_key = 'supersecretkey'
+```
 
 
 
