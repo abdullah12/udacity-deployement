@@ -4,7 +4,9 @@ This repo shows how to deploy a udacity catalog project
 
 ## Create virtual Machine
 and the note the ip and domain name  
-ip : 35.170.33.100  
+ip : 35.170.33.100
+domain name :progtut.site
+
 connect to the machine using ssh  
 
 ## Add user and add it to the sudo group
@@ -81,11 +83,36 @@ sys.path.insert(0, "/var/www/FlaskApp/")
 from FlaskApp import app as application
 application.secret_key = 'supersecretkey'
 ```
-insdie the FlaskApp create another FlaskApp and change to the created folder 
+insdie the FlaskApp create another FlaskApp and change to the created folder  
 
-git clone https://github.com/abdullah12/catalog-project.git .
+git clone https://github.com/abdullah12/catalog-project.git .  
 
-change app.py to __init__.py
+change app.py to __init__.py  
+change the path of client_secrets.json inside __init__.py  
+
+## configure apache virtual host 
+```
+<VirtualHost *:80>
+    ServerName 3.89.198.13
+    ServerAlias http://3.89.198.13.xip.io
+    ServerAdmin admin@35.167.27.204
+    WSGIDaemonProcess catalog python-path=/var/www/FlaskApp:/var/www/FlaskApp/venv/lib/python2.7/site-packages
+    WSGIProcessGroup catalog
+    WSGIScriptAlias / /var/www/FlaskApp/catalog.wsgi
+    <Directory /var/www/FlaskApp/FlaskApp/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    Alias /static /var/www/FlaskApp/FlaskApp/static
+    <Directory /var/www/FlaskApp/FlaskApp/static/>
+        Order allow,deny
+        Allow from all
+    </Directory>
+    ErrorLog ${APACHE_LOG_DIR}/error.log
+    LogLevel warn
+    CustomLog ${APACHE_LOG_DIR}/access.log combined
+</VirtualHost>
+```
 
 
 
