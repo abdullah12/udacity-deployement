@@ -11,6 +11,14 @@ connect to the machine using ssh
 sudo adduser grader  
 sudo usermod -aG sudo grader  
 
+## generate ssh keys and paste the public key to the server
+ssh-kegen
+copy the content of public key
+log into the server 
+swithc to gradee account
+create a file authorized_keys in ~/.ssh folder
+pase the content of pubilc key into the authorized_keys flile
+
 ## Update the system
 sudo apt update  
 sudo apt upgrade  
